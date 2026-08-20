@@ -1,1 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Fresca&display=swap');
 @import "tailwindcss";
+
+@theme {
+  --font-ui: "Fresca", sans-serif;
+  /* --font-display: "Glyphic", sans-serif; */
+}
