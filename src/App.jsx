@@ -1,6 +1,10 @@
+import Desktop from "./components/Desktop"
+
 const App = () => {
   return (
-    <div>App</div>
+    <div className="h-fit w-fit">
+      <Desktop />
+    </div>
   )
 }
 
