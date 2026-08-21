@@ -14,6 +14,25 @@ const Taskbar = () => {
     }
   }, [isFuzzelActive]);
 
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key.toLowerCase() === "escape") {
+        e.preventDefault();
+        setIsFuzzelActive(false);
+      }
+
+      if (e.ctrlKey && e.key.toLowerCase() === "l") {
+        e.preventDefault();
+        setIsFuzzelActive((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   const handleStartUpButtonClick = () => {
     setIsFuzzelActive((prev) => !prev);
   };

@@ -1,4 +1,4 @@
-import Desktop from "./components/Desktop"
+import Desktop from "./desktop/Desktop"
 
 const App = () => {
   return (
