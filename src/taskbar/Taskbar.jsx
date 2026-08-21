@@ -3,6 +3,8 @@ import StartUpButton from "./StartUpButton";
 import StartUpMenu from "./StartUpMenu";
 import { useRef } from "react";
 import { useEffect } from "react";
+import applicationRegistery from "../registery/applicationRegistery";
+import TaskbarApplication from "../components/TaskbarApplication";
 
 const Taskbar = () => {
   const [isFuzzelActive, setIsFuzzelActive] = useState(false);
@@ -42,18 +44,13 @@ const Taskbar = () => {
       <StartUpMenu
         isFuzzelActive={isFuzzelActive}
         startMenuRef={startMenuRef}
+        applicationRegistery={applicationRegistery}
       />
       <StartUpButton handleStartUpButtonClick={handleStartUpButtonClick} />
       <div className="h-full min-w-100 px-3 border-l border-[#c05037] flex items-center gap-3">
-        <h1 className="cursor-pointer select-none hover:scale-105 transition">
-          Files
-        </h1>
-        <h1 className="cursor-pointer select-none hover:scale-105 transition">
-          Terminal
-        </h1>
-        <h1 className="cursor-pointer select-none hover:scale-105 transition">
-          Editor
-        </h1>
+        {applicationRegistery.map(elem => {
+          return <TaskbarApplication name={elem.name} key={elem.id} />
+        })}
       </div>
     </div>
   );
