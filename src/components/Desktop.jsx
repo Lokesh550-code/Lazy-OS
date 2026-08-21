@@ -1,17 +1,18 @@
 import Clock from "../clock/Clock";
+import Taskbar from "../taskbar/Taskbar";
 import url from "../wallpapers/wallpaper1.jpg";
 const Desktop = () => {
   return (
     <div
-      className="h-screen w-screen bg-[#242222] text-[#f6e7d9] font-ui p-1"
+      className="h-screen w-screen p-2 bg-[#242222] text-[#f6e7d9] font-ui flex flex-col justify-between"
       style={{
         backgroundImage: `url(${url})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-        <Clock />
-      {/* <h1 className="text-2xl select-none">Lazy OS</h1> */}
+      <Clock />
+      <Taskbar />
     </div>
   );
 };
