@@ -20,6 +20,12 @@ const Desktop = () => {
     );
   };
 
+  const removeComponent = (id) => {
+    let arr = [...components];
+    arr = arr.filter((elem) => elem.id !== id);
+    setComponents(arr);
+  };
+
   return (
     <div
       className="h-screen w-screen p-2 bg-[#242222] text-[#f6e7d9] font-ui flex flex-col justify-between"
@@ -36,6 +42,7 @@ const Desktop = () => {
               <Window
                 application={elem}
                 focusWindow={focusWindow}
+                removeComponent={removeComponent}
                 key={elem.id}
               />
             );
