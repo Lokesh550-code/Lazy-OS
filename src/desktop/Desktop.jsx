@@ -3,8 +3,10 @@ import Taskbar from "../taskbar/Taskbar";
 import url from "../wallpapers/wallpaper1.jpg";
 import Window from "../window/Window";
 import { useState } from "react";
+
 const Desktop = () => {
   const [components, setComponents] = useState([]);
+
   const addComponents = (name) => {
     setComponents((prev) => [
       ...prev.map((elem) => ({ ...elem, focused: false })),
@@ -17,8 +19,6 @@ const Desktop = () => {
       prev.map((elem) => ({ ...elem, focused: elem.id === id })),
     );
   };
-
-  console.log(components);
 
   return (
     <div
