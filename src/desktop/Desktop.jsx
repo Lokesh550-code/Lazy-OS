@@ -7,12 +7,19 @@ const Desktop = () => {
   const [components, setComponents] = useState([]);
   const addComponents = (name) => {
     setComponents((prev) => [
-      ...prev,
-      { id: crypto.randomUUID(), applicationName: name },
+      ...prev.map((elem) => ({ ...elem, focused: false })),
+      { id: crypto.randomUUID(), applicationName: name, focused: true },
     ]);
   };
 
+  const focusWindow = (id) => {
+    setComponents((prev) =>
+      prev.map((elem) => ({ ...elem, focused: elem.id === id })),
+    );
+  };
+
   console.log(components);
+
   return (
     <div
       className="h-screen w-screen p-2 bg-[#242222] text-[#f6e7d9] font-ui flex flex-col justify-between"
@@ -23,7 +30,17 @@ const Desktop = () => {
       }}
     >
       <Clock />
-      {components.length !== 0 ? <Window /> : ""}
+      {components
+        ? components.map((elem) => {
+            return (
+              <Window
+                application={elem}
+                focusWindow={focusWindow}
+                key={elem.id}
+              />
+            );
+          })
+        : ""}
       <Taskbar addComponents={addComponents} />
     </div>
   );
