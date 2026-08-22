@@ -1,7 +1,18 @@
 import Clock from "../clock/Clock";
 import Taskbar from "../taskbar/Taskbar";
 import url from "../wallpapers/wallpaper1.jpg";
+import Window from "../window/Window";
+import { useState } from "react";
 const Desktop = () => {
+  const [components, setComponents] = useState([]);
+  const addComponents = (name) => {
+    setComponents((prev) => [
+      ...prev,
+      { id: crypto.randomUUID(), applicationName: name },
+    ]);
+  };
+
+  console.log(components);
   return (
     <div
       className="h-screen w-screen p-2 bg-[#242222] text-[#f6e7d9] font-ui flex flex-col justify-between"
@@ -12,7 +23,8 @@ const Desktop = () => {
       }}
     >
       <Clock />
-      <Taskbar />
+      {components.length !== 0 ? <Window /> : ""}
+      <Taskbar addComponents={addComponents} />
     </div>
   );
 };

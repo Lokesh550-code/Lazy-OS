@@ -6,26 +6,37 @@ const StartUpMenu = ({
   isFuzzelActive,
   startMenuRef,
   applicationRegistery,
+  addComponents,
 }) => {
   const [querry, setQuerry] = useState("");
   const [filteredArr, setFilteredArr] = useState(null);
 
   const handleInput = (e) => {
     setQuerry(e.target.value);
-    setFilteredArr(applicationRegistery.filter((elem) => elem.name.toLowerCase().includes(querry)));
+    setFilteredArr(
+      applicationRegistery.filter((elem) =>
+        elem.name.toLowerCase().includes(querry),
+      ),
+    );
   };
 
   useEffect(() => {
-    if(querry == "") {
+    if (querry == "") {
       setFilteredArr(null);
     }
-  }, [querry])
+  }, [querry]);
 
   return (
     <div
       className={` ${isFuzzelActive ? `fixed` : `hidden`} font-application h-80 w-100 p-3 bottom-14 flex flex-col gap-3 bg-[#242222] text-[#f6e7d9] rounded`}
     >
-      <form className="w-full" onSubmit={(e) => {e.preventDefault(); setQuerry("")}}>
+      <form
+        className="w-full"
+        onSubmit={(e) => {
+          e.preventDefault();
+          setQuerry("");
+        }}
+      >
         <input
           onChange={handleInput}
           value={querry}
@@ -37,9 +48,23 @@ const StartUpMenu = ({
           placeholder="Lazy Search"
         />
       </form>
-      {filteredArr? filteredArr.map(elem => <StartUpMenuApplication name={elem.name} key={elem.id} />) : applicationRegistery?.map((elem) => {
-        return <StartUpMenuApplication name={elem.name} key={elem.id} />;
-      })}
+      {filteredArr
+        ? filteredArr.map((elem) => (
+            <StartUpMenuApplication
+              addComponents={addComponents}
+              name={elem.name}
+              key={elem.id}
+            />
+          ))
+        : applicationRegistery?.map((elem) => {
+            return (
+              <StartUpMenuApplication
+                name={elem.name}
+                key={elem.id}
+                addComponents={addComponents}
+              />
+            );
+          })}
     </div>
   );
 };

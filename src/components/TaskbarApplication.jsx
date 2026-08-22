@@ -1,6 +1,11 @@
-const TaskbarApplication = ({name}) => {
+const TaskbarApplication = ({ name, addComponents }) => {
   return (
-    <h1 className="cursor-pointer select-none hover:scale-105 transition">
+    <h1
+      onClick={() => {
+        addComponents(name);
+      }}
+      className="cursor-pointer select-none hover:scale-105 transition"
+    >
       {name}
     </h1>
   );

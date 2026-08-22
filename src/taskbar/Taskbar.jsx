@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import applicationRegistery from "../registery/applicationRegistery";
 import TaskbarApplication from "../components/TaskbarApplication";
 
-const Taskbar = () => {
+const Taskbar = ({ addComponents }) => {
   const [isFuzzelActive, setIsFuzzelActive] = useState(false);
   const startMenuRef = useRef(null);
 
@@ -45,11 +45,18 @@ const Taskbar = () => {
         isFuzzelActive={isFuzzelActive}
         startMenuRef={startMenuRef}
         applicationRegistery={applicationRegistery}
+        addComponents={addComponents}
       />
       <StartUpButton handleStartUpButtonClick={handleStartUpButtonClick} />
       <div className="h-full min-w-100 px-3 border-l border-[#c05037] flex items-center gap-3">
-        {applicationRegistery.map(elem => {
-          return <TaskbarApplication name={elem.name} key={elem.id} />
+        {applicationRegistery.map((elem) => {
+          return (
+            <TaskbarApplication
+              name={elem.name}
+              key={elem.id}
+              addComponents={addComponents}
+            />
+          );
         })}
       </div>
     </div>
