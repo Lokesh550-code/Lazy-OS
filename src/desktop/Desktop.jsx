@@ -53,12 +53,32 @@ const Desktop = () => {
 
   const handlePointerDown = (event, id) => {
     event.currentTarget.setPointerCapture(event.pointerId);
-    const activeComponent = components.filter((elem) => elem.id === id);
+    const activeComponent = components.find((elem) => elem.id === id);
 
-    offsetRef.current = {
-      x: event.clientX - activeComponent[0].position.x,
-      y: event.clientY - activeComponent[0].position.y,
-    };
+    if (activeComponent.maximized) {
+      const newPosition = { x: event.clientX - 250, y: event.clientY - 25 };
+      offsetRef.current = {
+        x: event.clientX - newPosition.x,
+        y: event.clientY - newPosition.y,
+      };
+
+      setComponents((prev) =>
+        prev.map((elem) =>
+          elem.id === id
+            ? {
+                ...elem,
+                maximized: false,
+                position: newPosition,
+              }
+            : elem,
+        ),
+      );
+    } else {
+      offsetRef.current = {
+        x: event.clientX - activeComponent.position.x,
+        y: event.clientY - activeComponent.position.y,
+      };
+    }
 
     focusWindow(id);
   };
@@ -73,7 +93,6 @@ const Desktop = () => {
         elem.id === id
           ? {
               ...elem,
-              maximized: false, 
               position: {
                 x: event.clientX - offsetRef.current.x,
                 y: event.clientY - offsetRef.current.y,
