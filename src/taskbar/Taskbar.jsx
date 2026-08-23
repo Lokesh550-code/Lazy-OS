@@ -40,7 +40,7 @@ const Taskbar = ({ addComponents }) => {
   };
 
   return (
-    <div className="h-10 w-full bg-[#242222] text-[#f6e7d9] font-ui flex relative items-center rounded">
+    <div className="h-10 w-full z-20 bg-[#242222] text-[#f6e7d9] font-ui flex relative items-center rounded">
       <StartUpMenu
         isFuzzelActive={isFuzzelActive}
         startMenuRef={startMenuRef}

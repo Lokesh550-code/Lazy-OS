@@ -11,10 +11,10 @@ const Title = ({
     <div className="w-full h-10 bg-[#141313] text-[#f6e7d9] flex justify-between items-center select-none">
       <div
         onPointerDown={(event) => {
-          handlePointerDown(event);
+          handlePointerDown(event, application.id);
         }}
         onPointerMove={(event) => {
-          handlePointerMove(event);
+          handlePointerMove(event, application.id);
         }}
         onPointerUp={(event) => {
           handlePointerUp(event);

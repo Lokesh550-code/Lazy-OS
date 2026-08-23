@@ -7,8 +7,7 @@ import { useState } from "react";
 
 const Desktop = () => {
   const [components, setComponents] = useState([]);
-  const [position, setPosition] = useState({ x: 100, y: 100 });
-  const offsetRef = useRef({ x: 0, y: 100 });
+  const offsetRef = useRef({ x: 0, y: 0 });
 
   const addComponents = (name) => {
     setComponents((prev) => [
@@ -34,30 +33,41 @@ const Desktop = () => {
     setComponents(arr);
   };
 
-  const handlePointerDown = (event) => {
+  const handlePointerDown = (event, id) => {
     event.currentTarget.setPointerCapture(event.pointerId);
+    const activeComponent = components.filter((elem) => elem.id === id);
+
     offsetRef.current = {
-      x: event.clientX - position.x,
-      y: event.clientY - position.y,
+      x: event.clientX - activeComponent[0].position.x,
+      y: event.clientY - activeComponent[0].position.y,
     };
+
+    focusWindow(id);
   };
 
-  const handlePointerMove = (event) => {
+  const handlePointerMove = (event, id) => {
     if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
       return;
     }
 
-    setPosition({
-      x: event.clientX - offsetRef.current.x,
-      y: event.clientY - offsetRef.current.y,
-    });
+    setComponents((prev) =>
+      prev.map((elem) =>
+        elem.id === id
+          ? {
+              ...elem,
+              position: {
+                x: event.clientX - offsetRef.current.x,
+                y: event.clientY - offsetRef.current.y,
+              },
+            }
+          : elem,
+      ),
+    );
   };
 
   const handlePointerUp = (event) => {
     event.currentTarget.releasePointerCapture(event.pointerId);
   };
-
-  console.log(components);
 
   return (
     <div
@@ -75,7 +85,6 @@ const Desktop = () => {
               <Window
                 application={elem}
                 key={elem.id}
-                position={position}
                 handlePointerDown={handlePointerDown}
                 handlePointerMove={handlePointerMove}
                 handlePointerUp={handlePointerUp}
