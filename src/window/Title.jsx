@@ -1,4 +1,4 @@
-import { Diamond } from "lucide-react";
+import { Diamond, Square, Minus, X } from "lucide-react";
 
 const Title = ({
   application,
@@ -7,6 +7,7 @@ const Title = ({
   handlePointerMove,
   handlePointerUp,
   handleMinimize,
+  handleMaximize
 }) => {
   return (
     <div className="w-full h-10 bg-[#141313] text-[#f6e7d9] flex justify-between items-center select-none">
@@ -29,20 +30,22 @@ const Title = ({
           onClick={() => {
             handleMinimize(application.id);
           }}
-          className="mr-2 h-7 w-7 text-2xl flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition "
+          className="mr-2 h-7 w-7 flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition "
         >
-          -
+          <Minus size={14} />
         </button>
-        <button className="mr-2 h-7 w-7 text-2xl flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition ">
-          <Diamond size={16} />
+        <button 
+          onClick={() => {handleMaximize(application.id)}}
+          className="mr-2 h-7 w-7 flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition ">
+          {!application.maximized? <Square size={14}/>: <Diamond size={14} />}
         </button>
         <button
           onClick={() => {
             removeComponent(application.id);
           }}
-          className="mr-2 h-7 w-7 text-2xl flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition "
+          className="mr-2 h-7 w-7 flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition "
         >
-          x
+          <X size={14} />
         </button>
       </div>
     </div>

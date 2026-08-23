@@ -17,7 +17,8 @@ const Desktop = () => {
         applicationName: name,
         focused: true,
         minimized: false,
-        position: { x: 550, y: 200 },
+        maximized: false,
+        position: { x: 550, y: 100 },
       },
     ]);
   };
@@ -38,6 +39,14 @@ const Desktop = () => {
     setComponents((prev) =>
       prev.map((elem) =>
         elem.id === id ? { ...elem, minimized: true } : elem,
+      ),
+    );
+  };
+
+  const handleMaximize = (id) => {
+    setComponents((prev) =>
+      prev.map((elem) =>
+        elem.id === id ? { ...elem, maximized: !elem.maximized } : elem,
       ),
     );
   };
@@ -64,6 +73,7 @@ const Desktop = () => {
         elem.id === id
           ? {
               ...elem,
+              maximized: false, 
               position: {
                 x: event.clientX - offsetRef.current.x,
                 y: event.clientY - offsetRef.current.y,
@@ -100,6 +110,7 @@ const Desktop = () => {
                 focusWindow={focusWindow}
                 removeComponent={removeComponent}
                 handleMinimize={handleMinimize}
+                handleMaximize={handleMaximize}
               />
             );
           })

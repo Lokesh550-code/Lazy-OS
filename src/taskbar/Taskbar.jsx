@@ -49,7 +49,7 @@ const Taskbar = ({ addComponents }) => {
         addComponents={addComponents}
       />
       <StartUpButton handleStartUpButtonClick={handleStartUpButtonClick} />
-      <div className="h-full min-w-100 px-3 border-l border-[#c05037] flex items-center gap-3">
+      <div className="h-full min-w-100 px-3 border-l border-[#c05037] flex items-center gap-3 z-50">
         {applicationRegistery?.map((elem) =>
           elem.taskbarApplication === true ? (
             <TaskbarApplication
