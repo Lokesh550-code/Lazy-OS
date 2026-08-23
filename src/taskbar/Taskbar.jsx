@@ -40,7 +40,7 @@ const Taskbar = ({ addComponents }) => {
   };
 
   return (
-    <div className="h-10 w-full z-20 bg-[#242222] text-[#f6e7d9] font-ui flex relative items-center rounded">
+    <div className="h-10 w-full z-50 bg-[#242222] text-[#f6e7d9] font-ui flex relative items-center rounded">
       <StartUpMenu
         isFuzzelActive={isFuzzelActive}
         setIsFuzzelActive={setIsFuzzelActive}
@@ -50,7 +50,17 @@ const Taskbar = ({ addComponents }) => {
       />
       <StartUpButton handleStartUpButtonClick={handleStartUpButtonClick} />
       <div className="h-full min-w-100 px-3 border-l border-[#c05037] flex items-center gap-3">
-        {applicationRegistery?.map(elem => (elem.taskbarApplication === true ? <TaskbarApplication name={elem.name} key={elem.id} addComponents={addComponents} />:""))}
+        {applicationRegistery?.map((elem) =>
+          elem.taskbarApplication === true ? (
+            <TaskbarApplication
+              name={elem.name}
+              key={elem.id}
+              addComponents={addComponents}
+            />
+          ) : (
+            ""
+          ),
+        )}
       </div>
     </div>
   );

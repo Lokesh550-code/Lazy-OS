@@ -6,6 +6,7 @@ const Title = ({
   handlePointerDown,
   handlePointerMove,
   handlePointerUp,
+  handleMinimize,
 }) => {
   return (
     <div className="w-full h-10 bg-[#141313] text-[#f6e7d9] flex justify-between items-center select-none">
@@ -24,7 +25,12 @@ const Title = ({
         <h1>{application.applicationName}</h1>
       </div>
       <div className="flex">
-        <button className="mr-2 h-7 w-7 text-2xl flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition ">
+        <button
+          onClick={() => {
+            handleMinimize(application.id);
+          }}
+          className="mr-2 h-7 w-7 text-2xl flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition "
+        >
           -
         </button>
         <button className="mr-2 h-7 w-7 text-2xl flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition ">

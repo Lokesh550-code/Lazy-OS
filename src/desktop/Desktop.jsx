@@ -16,6 +16,7 @@ const Desktop = () => {
         id: crypto.randomUUID(),
         applicationName: name,
         focused: true,
+        minimized: false,
         position: { x: 550, y: 200 },
       },
     ]);
@@ -31,6 +32,14 @@ const Desktop = () => {
     let arr = [...components];
     arr = arr.filter((elem) => elem.id !== id);
     setComponents(arr);
+  };
+
+  const handleMinimize = (id) => {
+    setComponents((prev) =>
+      prev.map((elem) =>
+        elem.id === id ? { ...elem, minimized: true } : elem,
+      ),
+    );
   };
 
   const handlePointerDown = (event, id) => {
@@ -71,7 +80,7 @@ const Desktop = () => {
 
   return (
     <div
-      className="h-screen w-screen p-2 bg-[#242222] text-[#f6e7d9] font-ui flex flex-col justify-between overflow-hidden z-5"
+      className="h-screen w-screen p-2 bg-[#242222] text-[#f6e7d9] font-ui flex flex-col justify-between overflow-hidden z-10"
       style={{
         backgroundImage: `url(${url})`,
         backgroundSize: "cover",
@@ -90,6 +99,7 @@ const Desktop = () => {
                 handlePointerUp={handlePointerUp}
                 focusWindow={focusWindow}
                 removeComponent={removeComponent}
+                handleMinimize={handleMinimize}
               />
             );
           })
