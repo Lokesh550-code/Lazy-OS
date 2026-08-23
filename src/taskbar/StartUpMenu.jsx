@@ -7,6 +7,7 @@ const StartUpMenu = ({
   startMenuRef,
   applicationRegistery,
   addComponents,
+  setIsFuzzelActive
 }) => {
   const [querry, setQuerry] = useState("");
   const [filteredArr, setFilteredArr] = useState(null);
@@ -62,6 +63,7 @@ const StartUpMenu = ({
                 name={elem.name}
                 key={elem.id}
                 addComponents={addComponents}
+                setIsFuzzelActive={setIsFuzzelActive}
               />
             );
           })}

@@ -16,7 +16,7 @@ const Desktop = () => {
         id: crypto.randomUUID(),
         applicationName: name,
         focused: true,
-        position: { x: 100, y: 100 },
+        position: { x: 550, y: 200 },
       },
     ]);
   };
@@ -71,7 +71,7 @@ const Desktop = () => {
 
   return (
     <div
-      className="h-screen w-screen p-2 bg-[#242222] text-[#f6e7d9] font-ui flex flex-col justify-between overflow-hidden"
+      className="h-screen w-screen p-2 bg-[#242222] text-[#f6e7d9] font-ui flex flex-col justify-between overflow-hidden z-5"
       style={{
         backgroundImage: `url(${url})`,
         backgroundSize: "cover",
