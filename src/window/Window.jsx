@@ -42,9 +42,42 @@ const Window = ({
       <div className="h-full flex justify-center items-center">
         {application.applicationName}
       </div>
-      <div className="h-2 w-2 bg-white cursor-nwse-resize z-40 rounded-full absolute top-0 left-0"></div>
-      <div className="h-2 w-2 bg-white cursor-nesw-resize z-40 rounded-full absolute top-0 right-0"></div>
-      <div className="h-2 w-2 bg-white cursor-nesw-resize z-40 rounded-full absolute bottom-0 left-0"></div>
+      <div
+        onPointerDown={(event) => {
+          handleResizeStart(event, application.id);
+        }}
+        onPointerMove={(event) => {
+          handleResizeMove(event, application.id, "nw");
+        }}
+        onPointerUp={(event) => {
+          handleResizeEnd(event);
+        }}
+        className="h-2 w-2 cursor-nwse-resize z-40 absolute top-0 left-0"
+      ></div>
+      <div
+        onPointerDown={(event) => {
+          handleResizeStart(event, application.id);
+        }}
+        onPointerMove={(event) => {
+          handleResizeMove(event, application.id, "ne");
+        }}
+        onPointerUp={(event) => {
+          handleResizeEnd(event);
+        }}
+        className="h-2 w-2 cursor-nesw-resize z-40 absolute top-0 right-0"
+      ></div>
+      <div
+        onPointerDown={(event) => {
+          handleResizeStart(event, application.id);
+        }}
+        onPointerMove={(event) => {
+          handleResizeMove(event, application.id, "ws");
+        }}
+        onPointerUp={(event) => {
+          handleResizeEnd(event);
+        }}
+        className="h-2 w-2 cursor-nesw-resize z-40 absolute bottom-0 left-0"
+      ></div>
       <div
         onPointerDown={(event) => {
           handleResizeStart(event, application.id);
@@ -55,12 +88,34 @@ const Window = ({
         onPointerUp={(event) => {
           handleResizeEnd(event);
         }}
-        className="h-3 w-3 z-40 bg-white cursor-nwse-resize absolute bottom-0 right-0"
+        className="h-2 w-2 z-40 cursor-nwse-resize absolute bottom-0 right-0"
       ></div>
-      <div className="absolute h-1 w-full z-30 cursor-n-resize top-0  bg-green-500"></div>
-      <div className="absolute h-full w-1 z-30 cursor-w-resize left-0  bg-green-500"></div>
       <div
-      onPointerDown={(event) => {
+        onPointerDown={(event) => {
+          handleResizeStart(event, application.id);
+        }}
+        onPointerMove={(event) => {
+          handleResizeMove(event, application.id, "n");
+        }}
+        onPointerUp={(event) => {
+          handleResizeEnd(event);
+        }}
+        className="absolute h-1 w-full z-30 cursor-n-resize top-0"
+      ></div>
+      <div
+        onPointerDown={(event) => {
+          handleResizeStart(event, application.id);
+        }}
+        onPointerMove={(event) => {
+          handleResizeMove(event, application.id, "w");
+        }}
+        onPointerUp={(event) => {
+          handleResizeEnd(event);
+        }}
+        className="absolute h-full w-1 z-30 cursor-w-resize left-0"
+      ></div>
+      <div
+        onPointerDown={(event) => {
           handleResizeStart(event, application.id);
         }}
         onPointerMove={(event) => {
@@ -69,7 +124,8 @@ const Window = ({
         onPointerUp={(event) => {
           handleResizeEnd(event);
         }}
-      className="absolute h-1 w-full z-30 cursor-s-resize bottom-0  bg-green-500"></div>
+        className="absolute h-1 w-full z-30 cursor-s-resize bottom-0"
+      ></div>
       <div
         onPointerDown={(event) => {
           handleResizeStart(event, application.id);
@@ -80,7 +136,7 @@ const Window = ({
         onPointerUp={(event) => {
           handleResizeEnd(event);
         }}
-        className="absolute h-full w-1 z-30 cursor-e-resize right-0  bg-green-500"
+        className="absolute h-full w-1 z-30 cursor-e-resize right-0"
       ></div>
     </div>
   );

@@ -9,10 +9,12 @@ const Desktop = () => {
   const [components, setComponents] = useState([]);
   const offsetRef = useRef({ x: 0, y: 0 });
   const sizeDataRef = useRef({
-    startX: 0,
-    startY: 0,
+    startPointerX: 0,
+    startPointerY: 0,
     startWidth: 0,
     startHeight: 0,
+    startX: 0,
+    startY: 0,
   });
   const [resizing, setResizing] = useState(false);
 
@@ -122,10 +124,12 @@ const Desktop = () => {
     const activeComponent = components.find((elem) => elem.id === id);
 
     sizeDataRef.current = {
-      startX: event.clientX,
-      startY: event.clientY,
+      startPointerX: event.clientX,
+      startPointerY: event.clientY,
       startWidth: activeComponent.size.width,
       startHeight: activeComponent.size.height,
+      startX: activeComponent.position.x,
+      startY: activeComponent.position.y,
     };
 
     setResizing(true);
@@ -135,11 +139,16 @@ const Desktop = () => {
     if (!resizing) return;
 
     const data = sizeDataRef.current;
-    const dx = event.clientX - data.startX;
-    const dy = event.clientY - data.startY;
+    const dx = event.clientX - data.startPointerX;
+    const dy = event.clientY - data.startPointerY;
+    const maxDx = data.startWidth - 500;
+    const maxDy = data.startHeight - 500;
+    const clampedDx = Math.min(dx, maxDx);
+    const clampedDy = Math.min(dy, maxDy);
+    const dxMax = Math.max(dx, maxDx);
+    const dyMax = Math.max(dy, maxDy);
 
     if (moveDirecton === "es") {
-      console.log("Working...");
       setComponents((prev) =>
         prev.map((elem) =>
           elem.id === id
@@ -154,9 +163,8 @@ const Desktop = () => {
         ),
       );
     }
-    
+
     if (moveDirecton === "e") {
-      console.log("clicking...");
       setComponents((prev) =>
         prev.map((elem) =>
           elem.id === id
@@ -171,9 +179,8 @@ const Desktop = () => {
         ),
       );
     }
-    
+
     if (moveDirecton === "s") {
-      console.log("clicking...");
       setComponents((prev) =>
         prev.map((elem) =>
           elem.id === id
@@ -187,6 +194,50 @@ const Desktop = () => {
             : elem,
         ),
       );
+    }
+
+    if (moveDirecton === "w") {
+      setComponents((prev) =>
+        prev.map((elem) =>
+          elem.id === id
+            ? {
+                ...elem,
+                size: {
+                  width: Math.max(500, data.startWidth - clampedDx),
+                  height: elem.size.height,
+                },
+                position: { x: data.startX + clampedDx, y: elem.position.y },
+              }
+            : elem,
+        ),
+      );
+    }
+
+    if (moveDirecton === "n") {
+      setComponents((prev) =>
+        prev.map((elem) =>
+          elem.id === id
+            ? {
+                ...elem,
+                size: {
+                  width: elem.size.width,
+                  height: Math.max(500, data.startHeight - clampedDy),
+                },
+                position: { x: elem.position.x, y: data.startY + clampedDy },
+              }
+            : elem,
+        ),
+      );
+    }
+
+    if(moveDirecton === "ne") {
+      setComponents(prev => prev.map(elem => elem.id === id? {...elem, size: {width: data.startWidth + dxMax, height: data.startHeight - clampedDy}, position:{x: data.startX, y: data.startY + clampedDy}}: elem))
+    }
+    if(moveDirecton === "nw") {
+      setComponents(prev => prev.map(elem => elem.id === id? {...elem, size: {width: data.startWidth - clampedDx, height: data.startHeight - clampedDy}, position:{x: data.startX + clampedDx, y: data.startY + clampedDy }}: elem))
+    }
+    if(moveDirecton === "ws") {
+      setComponents(prev => prev.map(elem => elem.id === id? {...elem, size: {width: data.startWidth - clampedDx, height: data.startHeight + dyMax}, position:{x: data.startX + clampedDx, y: data.startY}}: elem))
     }
   };
 
