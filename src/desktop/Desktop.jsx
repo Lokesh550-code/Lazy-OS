@@ -8,6 +8,13 @@ import { useState } from "react";
 const Desktop = () => {
   const [components, setComponents] = useState([]);
   const offsetRef = useRef({ x: 0, y: 0 });
+  const sizeDataRef = useRef({
+    startX: 0,
+    startY: 0,
+    startWidth: 0,
+    startHeight: 0,
+  });
+  const [resizing, setResizing] = useState(false);
 
   const addComponents = (name) => {
     setComponents((prev) => [
@@ -19,6 +26,7 @@ const Desktop = () => {
         minimized: false,
         maximized: false,
         position: { x: 550, y: 100 },
+        size: { height: 500, width: 500 },
       },
     ]);
   };
@@ -107,6 +115,86 @@ const Desktop = () => {
     event.currentTarget.releasePointerCapture(event.pointerId);
   };
 
+  const handleResizeStart = (event, id) => {
+    event.stopPropagation();
+    event.currentTarget.setPointerCapture(event.pointerId);
+
+    const activeComponent = components.find((elem) => elem.id === id);
+
+    sizeDataRef.current = {
+      startX: event.clientX,
+      startY: event.clientY,
+      startWidth: activeComponent.size.width,
+      startHeight: activeComponent.size.height,
+    };
+
+    setResizing(true);
+  };
+
+  const handleResizeMove = (event, id, moveDirecton) => {
+    if (!resizing) return;
+
+    const data = sizeDataRef.current;
+    const dx = event.clientX - data.startX;
+    const dy = event.clientY - data.startY;
+
+    if (moveDirecton === "es") {
+      console.log("Working...");
+      setComponents((prev) =>
+        prev.map((elem) =>
+          elem.id === id
+            ? {
+                ...elem,
+                size: {
+                  width: Math.max(500, data.startWidth + dx),
+                  height: Math.max(500, data.startHeight + dy),
+                },
+              }
+            : elem,
+        ),
+      );
+    }
+    
+    if (moveDirecton === "e") {
+      console.log("clicking...");
+      setComponents((prev) =>
+        prev.map((elem) =>
+          elem.id === id
+            ? {
+                ...elem,
+                size: {
+                  width: Math.max(500, data.startWidth + dx),
+                  height: elem.size.height,
+                },
+              }
+            : elem,
+        ),
+      );
+    }
+    
+    if (moveDirecton === "s") {
+      console.log("clicking...");
+      setComponents((prev) =>
+        prev.map((elem) =>
+          elem.id === id
+            ? {
+                ...elem,
+                size: {
+                  width: elem.size.width,
+                  height: Math.max(500, data.startHeight + dy),
+                },
+              }
+            : elem,
+        ),
+      );
+    }
+  };
+
+  const handleResizeEnd = (event) => {
+    setResizing(false);
+    event.currentTarget.releasePointerCapture(event.pointerId);
+  };
+
   return (
     <div
       className="h-screen w-screen p-2 bg-[#242222] text-[#f6e7d9] font-ui flex flex-col justify-between overflow-hidden z-10"
@@ -130,6 +218,9 @@ const Desktop = () => {
                 removeComponent={removeComponent}
                 handleMinimize={handleMinimize}
                 handleMaximize={handleMaximize}
+                handleResizeStart={handleResizeStart}
+                handleResizeMove={handleResizeMove}
+                handleResizeEnd={handleResizeEnd}
               />
             );
           })
