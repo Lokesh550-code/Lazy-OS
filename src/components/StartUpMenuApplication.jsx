@@ -1,8 +1,8 @@
-const StartUpMenuApplication = ({ name, addComponents, setIsFuzzelActive }) => {
+const StartUpMenuApplication = ({ application, addComponents, setIsFuzzelActive }) => {
   return (
     <h1
       onClick={() => {
-        addComponents(name);
+        addComponents(application.name, application.applicationId);
         setIsFuzzelActive(false);
       }}
       className="border-l text-center cursor-pointer hover:bg-[#1b1a1a] rounded-r transition select-none"
