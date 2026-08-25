@@ -1,4 +1,7 @@
-const StartUpMenuApplication = ({ application, addComponents, setIsFuzzelActive }) => {
+import { useWindow } from "../hooks/useWindow";
+
+const StartUpMenuApplication = ({ application, setIsFuzzelActive }) => {
+  const { addComponents } = useWindow();
   return (
     <h1
       onClick={() => {

@@ -5,14 +5,9 @@ import { useRef } from "react";
 import { useEffect } from "react";
 import applicationRegistery from "../registery/applicationRegistery";
 import TaskbarApplication from "../components/TaskbarApplication";
+import { useWindow } from "../hooks/useWindow";
 
-const Taskbar = ({
-  addComponents,
-  handleMinimize,
-  handleRestore,
-  components,
-  focusWindow
-}) => {
+const Taskbar = () => {
   const [isFuzzelActive, setIsFuzzelActive] = useState(false);
   const startMenuRef = useRef(null);
 
@@ -45,6 +40,8 @@ const Taskbar = ({
     setIsFuzzelActive((prev) => !prev);
   };
 
+  const {components} = useWindow();
+
   return (
     <div className="h-10 w-full z-50 bg-[#242222] text-[#f6e7d9] font-ui flex relative items-center rounded">
       <StartUpMenu
@@ -52,17 +49,13 @@ const Taskbar = ({
         setIsFuzzelActive={setIsFuzzelActive}
         startMenuRef={startMenuRef}
         applicationRegistery={applicationRegistery}
-        addComponents={addComponents}
       />
       <StartUpButton handleStartUpButtonClick={handleStartUpButtonClick} />
       <div className="h-full min-w-100 px-3 border-l border-[#c05037] flex items-center gap-3 z-50">
         {components?.map((elem) => {
           return <TaskbarApplication
             application={elem}
-            key={elem.applicationId}
-            handleMinimize={handleMinimize}
-            handleRestore={handleRestore}
-            focusWindow={focusWindow}
+            key={elem.windowId}
           />;
         })}
       </div>

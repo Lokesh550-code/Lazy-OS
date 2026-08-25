@@ -1,14 +1,17 @@
 import { Diamond, Square, Minus, X } from "lucide-react";
+import { useWindow } from "../hooks/useWindow";
 
 const Title = ({
   application,
-  removeComponent,
-  handlePointerDown,
-  handlePointerMove,
-  handlePointerUp,
-  handleMinimize,
-  handleMaximize,
 }) => {
+  const {
+    removeComponent,
+    handlePointerDown,
+    handlePointerMove,
+    handlePointerUp,
+    handleMinimize,
+    handleMaximize,
+  } = useWindow();
   return (
     <div className="w-full h-10 bg-[#141313] text-[#f6e7d9] flex justify-between items-center select-none">
       <div

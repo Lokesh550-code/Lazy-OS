@@ -1,18 +1,11 @@
+import { useWindow } from "../hooks/useWindow";
 import Title from "./Title";
 
 const Window = ({
   application,
-  focusWindow,
-  removeComponent,
-  handlePointerDown,
-  handlePointerMove,
-  handlePointerUp,
-  handleMinimize,
-  handleMaximize,
-  handleResizeStart,
-  handleResizeMove,
-  handleResizeEnd,
 }) => {
+  const {
+    focusWindow, handleResizeStart, handleResizeMove, handleResizeEnd,} = useWindow();
   return (
     <div
       onPointerDown={() => {
@@ -31,13 +24,7 @@ const Window = ({
       className={`${application.minimized ? `hidden` : application.focused ? `border-[#943F2B] border-2 z-40` : `z-30`} absolute top-1/3 left-1/2 bg-[#242222] text-[#f6e7d9] flex flex-col items-center justify-center`}
     >
       <Title
-        handlePointerDown={handlePointerDown}
-        handlePointerMove={handlePointerMove}
-        handlePointerUp={handlePointerUp}
         application={application}
-        removeComponent={removeComponent}
-        handleMinimize={handleMinimize}
-        handleMaximize={handleMaximize}
       />
       <div className="h-full flex justify-center items-center">
         {application.applicationName}
