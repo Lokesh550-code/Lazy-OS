@@ -64,6 +64,20 @@ const Desktop = () => {
   const handlePointerDown = (event, id) => {
     event.currentTarget.setPointerCapture(event.pointerId);
     const activeComponent = components.find((elem) => elem.id === id);
+    offsetRef.current = {
+      x: event.clientX - activeComponent.position.x,
+      y: event.clientY - activeComponent.position.y,
+    };
+
+    focusWindow(id);
+  };
+
+  const handlePointerMove = (event, id) => {
+    if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
+      return;
+    }
+
+    const activeComponent = components.find((elem) => elem.id === id);
 
     if (activeComponent.maximized) {
       const newPosition = { x: event.clientX - 250, y: event.clientY - 25 };
@@ -84,33 +98,20 @@ const Desktop = () => {
         ),
       );
     } else {
-      offsetRef.current = {
-        x: event.clientX - activeComponent.position.x,
-        y: event.clientY - activeComponent.position.y,
-      };
+      setComponents((prev) =>
+        prev.map((elem) =>
+          elem.id === id
+            ? {
+                ...elem,
+                position: {
+                  x: event.clientX - offsetRef.current.x,
+                  y: event.clientY - offsetRef.current.y,
+                },
+              }
+            : elem,
+        ),
+      );
     }
-
-    focusWindow(id);
-  };
-
-  const handlePointerMove = (event, id) => {
-    if (!event.currentTarget.hasPointerCapture(event.pointerId)) {
-      return;
-    }
-
-    setComponents((prev) =>
-      prev.map((elem) =>
-        elem.id === id
-          ? {
-              ...elem,
-              position: {
-                x: event.clientX - offsetRef.current.x,
-                y: event.clientY - offsetRef.current.y,
-              },
-            }
-          : elem,
-      ),
-    );
   };
 
   const handlePointerUp = (event) => {
@@ -230,14 +231,56 @@ const Desktop = () => {
       );
     }
 
-    if(moveDirecton === "ne") {
-      setComponents(prev => prev.map(elem => elem.id === id? {...elem, size: {width: data.startWidth + dxMax, height: data.startHeight - clampedDy}, position:{x: data.startX, y: data.startY + clampedDy}}: elem))
+    if (moveDirecton === "ne") {
+      setComponents((prev) =>
+        prev.map((elem) =>
+          elem.id === id
+            ? {
+                ...elem,
+                size: {
+                  width: data.startWidth + dxMax,
+                  height: data.startHeight - clampedDy,
+                },
+                position: { x: data.startX, y: data.startY + clampedDy },
+              }
+            : elem,
+        ),
+      );
     }
-    if(moveDirecton === "nw") {
-      setComponents(prev => prev.map(elem => elem.id === id? {...elem, size: {width: data.startWidth - clampedDx, height: data.startHeight - clampedDy}, position:{x: data.startX + clampedDx, y: data.startY + clampedDy }}: elem))
+    if (moveDirecton === "nw") {
+      setComponents((prev) =>
+        prev.map((elem) =>
+          elem.id === id
+            ? {
+                ...elem,
+                size: {
+                  width: data.startWidth - clampedDx,
+                  height: data.startHeight - clampedDy,
+                },
+                position: {
+                  x: data.startX + clampedDx,
+                  y: data.startY + clampedDy,
+                },
+              }
+            : elem,
+        ),
+      );
     }
-    if(moveDirecton === "ws") {
-      setComponents(prev => prev.map(elem => elem.id === id? {...elem, size: {width: data.startWidth - clampedDx, height: data.startHeight + dyMax}, position:{x: data.startX + clampedDx, y: data.startY}}: elem))
+    if (moveDirecton === "ws") {
+      setComponents((prev) =>
+        prev.map((elem) =>
+          elem.id === id
+            ? {
+                ...elem,
+                size: {
+                  width: data.startWidth - clampedDx,
+                  height: data.startHeight + dyMax,
+                },
+                position: { x: data.startX + clampedDx, y: data.startY },
+              }
+            : elem,
+        ),
+      );
     }
   };
 
