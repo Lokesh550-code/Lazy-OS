@@ -46,18 +46,26 @@ const Desktop = () => {
     setComponents(arr);
   };
 
-  const handleMinimize = (windowId, applicationId) => {
+  const handleMinimize = (windowId) => {
     setComponents((prev) =>
       prev.map((elem) =>
-        elem.windowId === windowId && elem.applicationId === applicationId ? { ...elem, minimized: true } : elem,
+        elem.windowId === windowId ? { ...elem, minimized: true } : elem,
       ),
     );
   };
 
+  const handleRestore = (windowId) => {
+    setComponents((prev) =>
+      prev.map((elem) =>
+        elem.windowId === windowId ? { ...elem, minimized: false } : elem,
+      ),
+    );
+  }
+
   const handleMaximize = (id) => {
     setComponents((prev) =>
       prev.map((elem) =>
-        elem.windowId === id? { ...elem, maximized: !elem.maximized } : elem,
+        elem.windowId === id ? { ...elem, maximized: !elem.maximized } : elem,
       ),
     );
   };

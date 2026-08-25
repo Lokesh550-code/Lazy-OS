@@ -54,14 +54,15 @@ const StartUpMenu = ({
             <StartUpMenuApplication
               addComponents={addComponents}
               name={elem.name}
-              key={elem.id}
+              key={elem.applicationId}
             />
           ))
         : applicationRegistery?.map((elem) => {
+          console.log(applicationRegistery)
             return (
               <StartUpMenuApplication
                 application={elem}
-                key={elem.id}
+                key={elem.applicationId}
                 addComponents={addComponents}
                 setIsFuzzelActive={setIsFuzzelActive}
               />
