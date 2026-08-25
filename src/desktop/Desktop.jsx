@@ -46,10 +46,10 @@ const Desktop = () => {
     setComponents(arr);
   };
 
-  const handleMinimize = (id) => {
+  const handleMinimize = (windowId, applicationId) => {
     setComponents((prev) =>
       prev.map((elem) =>
-        elem.windowId === id ? { ...elem, minimized: true } : elem,
+        elem.windowId === windowId && elem.applicationId === applicationId ? { ...elem, minimized: true } : elem,
       ),
     );
   };

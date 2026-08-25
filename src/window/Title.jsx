@@ -36,7 +36,7 @@ const Title = ({
         </button>
         <button
           onClick={() => {
-            handleMaximize(application.windowId);
+            handleMaximize(application.windowId, application.applicationId);
           }}
           className="mr-2 h-7 w-7 flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition "
         >

@@ -1,13 +1,13 @@
 const TaskbarApplication = ({
   application,
-  setTaskbarApplication,
+  setTaskbarApplicationRegistery,
   addComponents,
   handleMaximize
 }) => {
   return (
     <h1
       onClick={() => {
-        addComponents(application.name);
+        addComponents(application.name, application.applicationId);
         // handleMaximize(application.id);
         // setTaskbarApplication((prev) =>
         //   prev.map((elem) =>

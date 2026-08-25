@@ -9,7 +9,7 @@ import TaskbarApplication from "../components/TaskbarApplication";
 
 const Taskbar = ({ addComponents, handleMaximize }) => {
   const [isFuzzelActive, setIsFuzzelActive] = useState(false);
-  const [taskbarApplication, setTaskbarApplication] = useState(taskbarRegistery);
+  const [taskbarApplicationRegistery, setTaskbarApplicationRegistery] = useState(taskbarRegistery);
   const startMenuRef = useRef(null);
 
   useEffect(() => {
@@ -52,13 +52,13 @@ const Taskbar = ({ addComponents, handleMaximize }) => {
       />
       <StartUpButton handleStartUpButtonClick={handleStartUpButtonClick} />
       <div className="h-full min-w-100 px-3 border-l border-[#c05037] flex items-center gap-3 z-50">
-        {taskbarApplication?.map((elem) =>
+        {taskbarApplicationRegistery?.map((elem) =>
           elem.taskbarApplication === true || elem.active === true ? (
             <TaskbarApplication
               application={elem}
               key={elem.applicationId}
               addComponents={addComponents}
-              setTaskbarApplication={setTaskbarApplication}
+              setTaskbarApplicationRegistery={setTaskbarApplicationRegistery}
               handleMaximize={handleMaximize}
             />
           ) : (
