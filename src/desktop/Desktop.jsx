@@ -60,7 +60,9 @@ const Desktop = () => {
         elem.windowId === windowId ? { ...elem, minimized: false } : elem,
       ),
     );
-  }
+
+    focusWindow(windowId);
+  };
 
   const handleMaximize = (id) => {
     setComponents((prev) =>
@@ -328,7 +330,12 @@ const Desktop = () => {
             );
           })
         : ""}
-      <Taskbar handleMaximize={handleMaximize} addComponents={addComponents} />
+      <Taskbar
+        handleMinimize={handleMinimize}
+        handleRestore={handleRestore}
+        addComponents={addComponents}
+        components={components}
+      />
     </div>
   );
 };

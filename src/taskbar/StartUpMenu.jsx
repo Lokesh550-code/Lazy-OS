@@ -58,7 +58,6 @@ const StartUpMenu = ({
             />
           ))
         : applicationRegistery?.map((elem) => {
-          console.log(applicationRegistery)
             return (
               <StartUpMenuApplication
                 application={elem}

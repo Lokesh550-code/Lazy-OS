@@ -4,12 +4,15 @@ import StartUpMenu from "./StartUpMenu";
 import { useRef } from "react";
 import { useEffect } from "react";
 import applicationRegistery from "../registery/applicationRegistery";
-import taskbarRegistery from "../registery/taskbarRegistery";
 import TaskbarApplication from "../components/TaskbarApplication";
 
-const Taskbar = ({ addComponents, handleMaximize }) => {
+const Taskbar = ({
+  addComponents,
+  handleMinimize,
+  handleRestore,
+  components,
+}) => {
   const [isFuzzelActive, setIsFuzzelActive] = useState(false);
-  const [taskbarApplicationRegistery, setTaskbarApplicationRegistery] = useState(taskbarRegistery);
   const startMenuRef = useRef(null);
 
   useEffect(() => {
@@ -52,19 +55,14 @@ const Taskbar = ({ addComponents, handleMaximize }) => {
       />
       <StartUpButton handleStartUpButtonClick={handleStartUpButtonClick} />
       <div className="h-full min-w-100 px-3 border-l border-[#c05037] flex items-center gap-3 z-50">
-        {taskbarApplicationRegistery?.map((elem) =>
-          elem.taskbarApplication === true || elem.active === true ? (
-            <TaskbarApplication
-              application={elem}
-              key={elem.applicationId}
-              addComponents={addComponents}
-              setTaskbarApplicationRegistery={setTaskbarApplicationRegistery}
-              handleMaximize={handleMaximize}
-            />
-          ) : (
-            ""
-          ),
-        )}
+        {components?.map((elem) => {
+          return <TaskbarApplication
+            application={elem}
+            key={elem.applicationId}
+            handleMinimize={handleMinimize}
+            handleRestore={handleRestore}
+          />;
+        })}
       </div>
     </div>
   );

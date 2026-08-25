@@ -1,23 +1,21 @@
 const TaskbarApplication = ({
   application,
-  setTaskbarApplicationRegistery,
-  addComponents,
-  handleMaximize
+  handleMinimize,
+  handleRestore
 }) => {
+  console.log(application);
   return (
     <h1
       onClick={() => {
-        addComponents(application.name, application.applicationId);
-        // handleMaximize(application.id);
-        // setTaskbarApplication((prev) =>
-        //   prev.map((elem) =>
-        //     elem.id === application.id ? { ...elem, active: !elem.active } : elem,
-        //   ),
-        // );
+        if(application.minimized) {
+          handleRestore(application.windowId)
+        } else {
+          handleMinimize(application.windowId)
+        }
       }}
-      className={`cursor-pointer select-none hover:scale-105 transition`}
+      className={`${application.minimized? "border-b border-[#c05037]" : "border-b"} cursor-pointer select-none hover:scale-105 transition`}
     >
-      {application.name}
+      {application.applicationName}
     </h1>
   );
 };
