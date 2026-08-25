@@ -7,16 +7,16 @@ const Title = ({
   handlePointerMove,
   handlePointerUp,
   handleMinimize,
-  handleMaximize
+  handleMaximize,
 }) => {
   return (
     <div className="w-full h-10 bg-[#141313] text-[#f6e7d9] flex justify-between items-center select-none">
       <div
         onPointerDown={(event) => {
-          handlePointerDown(event, application.id);
+          handlePointerDown(event, application.windowId);
         }}
         onPointerMove={(event) => {
-          handlePointerMove(event, application.id);
+          handlePointerMove(event, application.windowId);
         }}
         onPointerUp={(event) => {
           handlePointerUp(event);
@@ -28,20 +28,27 @@ const Title = ({
       <div className="flex">
         <button
           onClick={() => {
-            handleMinimize(application.id);
+            handleMinimize(application.windowId);
           }}
           className="mr-2 h-7 w-7 flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition "
         >
           <Minus size={14} />
         </button>
-        <button 
-          onClick={() => {handleMaximize(application.id)}}
-          className="mr-2 h-7 w-7 flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition ">
-          {!application.maximized? <Square size={14}/>: <Diamond size={14} />}
+        <button
+          onClick={() => {
+            handleMaximize(application.windowId);
+          }}
+          className="mr-2 h-7 w-7 flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition "
+        >
+          {!application.maximized ? (
+            <Square size={14} />
+          ) : (
+            <Diamond size={14} />
+          )}
         </button>
         <button
           onClick={() => {
-            removeComponent(application.id);
+            removeComponent(application.windowId);
           }}
           className="mr-2 h-7 w-7 flex justify-center items-center hover:text-[#933E2A] hover:bg-[#2d2d2d] cursor-pointer rounded transition "
         >

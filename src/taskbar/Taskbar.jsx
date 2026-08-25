@@ -4,10 +4,12 @@ import StartUpMenu from "./StartUpMenu";
 import { useRef } from "react";
 import { useEffect } from "react";
 import applicationRegistery from "../registery/applicationRegistery";
+import taskbarRegistery from "../registery/taskbarRegistery";
 import TaskbarApplication from "../components/TaskbarApplication";
 
-const Taskbar = ({ addComponents }) => {
+const Taskbar = ({ addComponents, handleMaximize }) => {
   const [isFuzzelActive, setIsFuzzelActive] = useState(false);
+  const [taskbarApplication, setTaskbarApplication] = useState(taskbarRegistery);
   const startMenuRef = useRef(null);
 
   useEffect(() => {
@@ -50,12 +52,14 @@ const Taskbar = ({ addComponents }) => {
       />
       <StartUpButton handleStartUpButtonClick={handleStartUpButtonClick} />
       <div className="h-full min-w-100 px-3 border-l border-[#c05037] flex items-center gap-3 z-50">
-        {applicationRegistery?.map((elem) =>
-          elem.taskbarApplication === true ? (
+        {taskbarApplication?.map((elem) =>
+          elem.taskbarApplication === true || elem.active === true ? (
             <TaskbarApplication
-              name={elem.name}
-              key={elem.id}
+              application={elem}
+              key={elem.applicationId}
               addComponents={addComponents}
+              setTaskbarApplication={setTaskbarApplication}
+              handleMaximize={handleMaximize}
             />
           ) : (
             ""

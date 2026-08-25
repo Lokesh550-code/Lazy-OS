@@ -16,7 +16,7 @@ const Window = ({
   return (
     <div
       onPointerDown={() => {
-        focusWindow(application.id);
+        focusWindow(application.windowId);
       }}
       style={
         application.maximized
@@ -44,10 +44,10 @@ const Window = ({
       </div>
       <div
         onPointerDown={(event) => {
-          handleResizeStart(event, application.id);
+          handleResizeStart(event, application.windowId);
         }}
         onPointerMove={(event) => {
-          handleResizeMove(event, application.id, "nw");
+          handleResizeMove(event, application.windowId, "nw");
         }}
         onPointerUp={(event) => {
           handleResizeEnd(event);
@@ -56,10 +56,10 @@ const Window = ({
       ></div>
       <div
         onPointerDown={(event) => {
-          handleResizeStart(event, application.id);
+          handleResizeStart(event, application.windowId);
         }}
         onPointerMove={(event) => {
-          handleResizeMove(event, application.id, "ne");
+          handleResizeMove(event, application.windowId, "ne");
         }}
         onPointerUp={(event) => {
           handleResizeEnd(event);
@@ -68,10 +68,10 @@ const Window = ({
       ></div>
       <div
         onPointerDown={(event) => {
-          handleResizeStart(event, application.id);
+          handleResizeStart(event, application.windowId);
         }}
         onPointerMove={(event) => {
-          handleResizeMove(event, application.id, "ws");
+          handleResizeMove(event, application.windowId, "ws");
         }}
         onPointerUp={(event) => {
           handleResizeEnd(event);
@@ -80,10 +80,10 @@ const Window = ({
       ></div>
       <div
         onPointerDown={(event) => {
-          handleResizeStart(event, application.id);
+          handleResizeStart(event, application.windowId);
         }}
         onPointerMove={(event) => {
-          handleResizeMove(event, application.id, "es");
+          handleResizeMove(event, application.windowId, "es");
         }}
         onPointerUp={(event) => {
           handleResizeEnd(event);
@@ -92,10 +92,10 @@ const Window = ({
       ></div>
       <div
         onPointerDown={(event) => {
-          handleResizeStart(event, application.id);
+          handleResizeStart(event, application.windowId);
         }}
         onPointerMove={(event) => {
-          handleResizeMove(event, application.id, "n");
+          handleResizeMove(event, application.windowId, "n");
         }}
         onPointerUp={(event) => {
           handleResizeEnd(event);
@@ -104,10 +104,10 @@ const Window = ({
       ></div>
       <div
         onPointerDown={(event) => {
-          handleResizeStart(event, application.id);
+          handleResizeStart(event, application.windowId);
         }}
         onPointerMove={(event) => {
-          handleResizeMove(event, application.id, "w");
+          handleResizeMove(event, application.windowId, "w");
         }}
         onPointerUp={(event) => {
           handleResizeEnd(event);
@@ -116,10 +116,10 @@ const Window = ({
       ></div>
       <div
         onPointerDown={(event) => {
-          handleResizeStart(event, application.id);
+          handleResizeStart(event, application.windowId);
         }}
         onPointerMove={(event) => {
-          handleResizeMove(event, application.id, "s");
+          handleResizeMove(event, application.windowId, "s");
         }}
         onPointerUp={(event) => {
           handleResizeEnd(event);
@@ -128,10 +128,10 @@ const Window = ({
       ></div>
       <div
         onPointerDown={(event) => {
-          handleResizeStart(event, application.id);
+          handleResizeStart(event, application.windowId);
         }}
         onPointerMove={(event) => {
-          handleResizeMove(event, application.id, "e");
+          handleResizeMove(event, application.windowId, "e");
         }}
         onPointerUp={(event) => {
           handleResizeEnd(event);

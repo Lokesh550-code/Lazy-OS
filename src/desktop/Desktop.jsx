@@ -18,11 +18,12 @@ const Desktop = () => {
   });
   const [resizing, setResizing] = useState(false);
 
-  const addComponents = (name) => {
+  const addComponents = (name, id) => {
     setComponents((prev) => [
       ...prev.map((elem) => ({ ...elem, focused: false })),
       {
-        id: crypto.randomUUID(),
+        windowId: crypto.randomUUID(),
+        applicationId: id,
         applicationName: name,
         focused: true,
         minimized: false,
@@ -35,20 +36,20 @@ const Desktop = () => {
 
   const focusWindow = (id) => {
     setComponents((prev) =>
-      prev.map((elem) => ({ ...elem, focused: elem.id === id })),
+      prev.map((elem) => ({ ...elem, focused: elem.windowId === id })),
     );
   };
 
   const removeComponent = (id) => {
     let arr = [...components];
-    arr = arr.filter((elem) => elem.id !== id);
+    arr = arr.filter((elem) => elem.windowId !== id);
     setComponents(arr);
   };
 
   const handleMinimize = (id) => {
     setComponents((prev) =>
       prev.map((elem) =>
-        elem.id === id ? { ...elem, minimized: true } : elem,
+        elem.windowId === id ? { ...elem, minimized: true } : elem,
       ),
     );
   };
@@ -56,14 +57,14 @@ const Desktop = () => {
   const handleMaximize = (id) => {
     setComponents((prev) =>
       prev.map((elem) =>
-        elem.id === id ? { ...elem, maximized: !elem.maximized } : elem,
+        elem.windowId === id? { ...elem, maximized: !elem.maximized } : elem,
       ),
     );
   };
 
   const handlePointerDown = (event, id) => {
     event.currentTarget.setPointerCapture(event.pointerId);
-    const activeComponent = components.find((elem) => elem.id === id);
+    const activeComponent = components.find((elem) => elem.windowId === id);
     offsetRef.current = {
       x: event.clientX - activeComponent.position.x,
       y: event.clientY - activeComponent.position.y,
@@ -77,7 +78,7 @@ const Desktop = () => {
       return;
     }
 
-    const activeComponent = components.find((elem) => elem.id === id);
+    const activeComponent = components.find((elem) => elem.windowId === id);
 
     if (activeComponent.maximized) {
       const newPosition = { x: event.clientX - 250, y: event.clientY - 25 };
@@ -88,7 +89,7 @@ const Desktop = () => {
 
       setComponents((prev) =>
         prev.map((elem) =>
-          elem.id === id
+          elem.windowId === id
             ? {
                 ...elem,
                 maximized: false,
@@ -100,7 +101,7 @@ const Desktop = () => {
     } else {
       setComponents((prev) =>
         prev.map((elem) =>
-          elem.id === id
+          elem.windowId === id
             ? {
                 ...elem,
                 position: {
@@ -122,7 +123,7 @@ const Desktop = () => {
     event.stopPropagation();
     event.currentTarget.setPointerCapture(event.pointerId);
 
-    const activeComponent = components.find((elem) => elem.id === id);
+    const activeComponent = components.find((elem) => elem.windowId === id);
 
     sizeDataRef.current = {
       startPointerX: event.clientX,
@@ -152,7 +153,7 @@ const Desktop = () => {
     if (moveDirecton === "es") {
       setComponents((prev) =>
         prev.map((elem) =>
-          elem.id === id
+          elem.windowId === id
             ? {
                 ...elem,
                 size: {
@@ -168,7 +169,7 @@ const Desktop = () => {
     if (moveDirecton === "e") {
       setComponents((prev) =>
         prev.map((elem) =>
-          elem.id === id
+          elem.windowId === id
             ? {
                 ...elem,
                 size: {
@@ -184,7 +185,7 @@ const Desktop = () => {
     if (moveDirecton === "s") {
       setComponents((prev) =>
         prev.map((elem) =>
-          elem.id === id
+          elem.windowId === id
             ? {
                 ...elem,
                 size: {
@@ -200,7 +201,7 @@ const Desktop = () => {
     if (moveDirecton === "w") {
       setComponents((prev) =>
         prev.map((elem) =>
-          elem.id === id
+          elem.windowId === id
             ? {
                 ...elem,
                 size: {
@@ -217,7 +218,7 @@ const Desktop = () => {
     if (moveDirecton === "n") {
       setComponents((prev) =>
         prev.map((elem) =>
-          elem.id === id
+          elem.windowId === id
             ? {
                 ...elem,
                 size: {
@@ -234,7 +235,7 @@ const Desktop = () => {
     if (moveDirecton === "ne") {
       setComponents((prev) =>
         prev.map((elem) =>
-          elem.id === id
+          elem.windowId === id
             ? {
                 ...elem,
                 size: {
@@ -250,7 +251,7 @@ const Desktop = () => {
     if (moveDirecton === "nw") {
       setComponents((prev) =>
         prev.map((elem) =>
-          elem.id === id
+          elem.windowId === id
             ? {
                 ...elem,
                 size: {
@@ -269,7 +270,7 @@ const Desktop = () => {
     if (moveDirecton === "ws") {
       setComponents((prev) =>
         prev.map((elem) =>
-          elem.id === id
+          elem.windowId === id
             ? {
                 ...elem,
                 size: {
@@ -319,7 +320,7 @@ const Desktop = () => {
             );
           })
         : ""}
-      <Taskbar addComponents={addComponents} />
+      <Taskbar handleMaximize={handleMaximize} addComponents={addComponents} />
     </div>
   );
 };
