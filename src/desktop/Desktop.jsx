@@ -335,6 +335,7 @@ const Desktop = () => {
         handleRestore={handleRestore}
         addComponents={addComponents}
         components={components}
+        focusWindow={focusWindow}
       />
     </div>
   );

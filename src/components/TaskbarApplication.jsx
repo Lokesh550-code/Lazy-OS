@@ -1,7 +1,8 @@
 const TaskbarApplication = ({
   application,
   handleMinimize,
-  handleRestore
+  handleRestore,
+  focusWindow
 }) => {
   console.log(application);
   return (
@@ -9,11 +10,13 @@ const TaskbarApplication = ({
       onClick={() => {
         if(application.minimized) {
           handleRestore(application.windowId)
-        } else {
+        } else if(application.focused){
           handleMinimize(application.windowId)
+        } else {
+          focusWindow(application.windowId)
         }
       }}
-      className={`${application.minimized? "border-b border-[#c05037]" : "border-b"} cursor-pointer select-none hover:scale-105 transition`}
+      className={`${!application.focused ? `border-b border-[#ffa552]` :application.minimized? "border-b border-[#c05037]" : "border-b"} cursor-pointer select-none hover:scale-105 transition`}
     >
       {application.applicationName}
     </h1>

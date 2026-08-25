@@ -11,6 +11,7 @@ const Taskbar = ({
   handleMinimize,
   handleRestore,
   components,
+  focusWindow
 }) => {
   const [isFuzzelActive, setIsFuzzelActive] = useState(false);
   const startMenuRef = useRef(null);
@@ -61,6 +62,7 @@ const Taskbar = ({
             key={elem.applicationId}
             handleMinimize={handleMinimize}
             handleRestore={handleRestore}
+            focusWindow={focusWindow}
           />;
         })}
       </div>
