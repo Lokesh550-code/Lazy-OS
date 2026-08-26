@@ -16,7 +16,7 @@ const WindowProvider = ({ children }) => {
   });
   const [resizing, setResizing] = useState(false);
 
-  const addComponents = (name, id) => {
+  const addComponents = (name, id, component) => {
     setComponents((prev) => [
       ...prev.map((elem) => ({ ...elem, focused: false })),
       {
@@ -28,6 +28,7 @@ const WindowProvider = ({ children }) => {
         maximized: false,
         position: { x: 550, y: 100 },
         size: { height: 500, width: 500 },
+        component: component,
       },
     ]);
   };
@@ -298,10 +299,26 @@ const WindowProvider = ({ children }) => {
     event.currentTarget.releasePointerCapture(event.pointerId);
   };
   return (
-    <WindowContext.Provider value={{components, addComponents, focusWindow, removeComponent, handleMinimize, handleRestore, handleMaximize, handlePointerDown, handlePointerMove, handlePointerUp, handleResizeStart, handleResizeMove, handleResizeEnd}}>
+    <WindowContext.Provider
+      value={{
+        components,
+        addComponents,
+        focusWindow,
+        removeComponent,
+        handleMinimize,
+        handleRestore,
+        handleMaximize,
+        handlePointerDown,
+        handlePointerMove,
+        handlePointerUp,
+        handleResizeStart,
+        handleResizeMove,
+        handleResizeEnd,
+      }}
+    >
       {children}
     </WindowContext.Provider>
-  )
+  );
 };
 
 export default WindowProvider;

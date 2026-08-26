@@ -51,8 +51,9 @@ const StartUpMenu = ({
       {filteredArr
         ? filteredArr.map((elem) => (
             <StartUpMenuApplication
-              name={elem.name}
+              application={elem}
               key={elem.applicationId}
+              setIsFuzzelActive={setIsFuzzelActive}
             />
           ))
         : applicationRegistery?.map((elem) => {

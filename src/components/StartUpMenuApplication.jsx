@@ -5,7 +5,7 @@ const StartUpMenuApplication = ({ application, setIsFuzzelActive }) => {
   return (
     <h1
       onClick={() => {
-        addComponents(application.name, application.applicationId);
+        addComponents(application.name, application.applicationId, application.component);
         setIsFuzzelActive(false);
       }}
       className="border-l text-center cursor-pointer hover:bg-[#1b1a1a] rounded-r transition select-none"

@@ -4,6 +4,7 @@ import Title from "./Title";
 const Window = ({
   application,
 }) => {
+  const ApplicattionComponent = application.component;
   const {
     focusWindow, handleResizeStart, handleResizeMove, handleResizeEnd,} = useWindow();
   return (
@@ -26,8 +27,8 @@ const Window = ({
       <Title
         application={application}
       />
-      <div className="h-full flex justify-center items-center">
-        {application.applicationName}
+      <div className="h-full w-full flex justify-center items-center">
+        <ApplicattionComponent />
       </div>
       <div
         onPointerDown={(event) => {
