@@ -8,30 +8,6 @@ const Calculator = () => {
   const [secondValue, setSecondValue] = useState("");
   const [operator, setOperator] = useState("");
   const [result, setResult] = useState("");
-  const buttons = [
-    { key: "9", action: handleNumber },
-    { key: "8", action: handleNumber },
-    { key: "7", action: handleNumber },
-    { key: "/", action: handleOperator },
-
-    { key: "6", action: handleNumber },
-    { key: "5", action: handleNumber },
-    { key: "4", action: handleNumber },
-    { key: "*", action: handleOperator },
-
-    { key: "3", action: handleNumber },
-    { key: "2", action: handleNumber },
-    { key: "1", action: handleNumber },
-    { key: "-", action: handleOperator },
-
-    { key: "0", action: handleNumber },
-    { key: ".", action: handleNumber },
-    { key: "=", action: handleCalculate },
-    { key: "+", action: handleOperator },
-
-    { key: "C", action: handleClear },
-    { key: "backspace", action: handleBackspace },
-  ];
 
   const handleNumber = (number) => {
     if (operator !== "") {
@@ -67,6 +43,31 @@ const Calculator = () => {
     setOperator("");
     setResult("");
   };
+
+  const buttons = [
+    { key: "9", action: handleNumber },
+    { key: "8", action: handleNumber },
+    { key: "7", action: handleNumber },
+    { key: "/", action: handleOperator },
+
+    { key: "6", action: handleNumber },
+    { key: "5", action: handleNumber },
+    { key: "4", action: handleNumber },
+    { key: "*", action: handleOperator },
+
+    { key: "3", action: handleNumber },
+    { key: "2", action: handleNumber },
+    { key: "1", action: handleNumber },
+    { key: "-", action: handleOperator },
+
+    { key: "0", action: handleNumber },
+    { key: ".", action: handleNumber },
+    { key: "=", action: handleCalculate },
+    { key: "+", action: handleOperator },
+
+    { key: "C", action: handleClear },
+    { key: "backspace", action: handleBackspace },
+  ];
 
   useEffect(() => {
     const handleKeyDown = (e) => {

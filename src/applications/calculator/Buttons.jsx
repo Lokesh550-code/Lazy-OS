@@ -1,5 +1,4 @@
 const Buttons = ({ elem }) => {
-  console.log(elem);
   return (
     <div
       onClick={() => {
