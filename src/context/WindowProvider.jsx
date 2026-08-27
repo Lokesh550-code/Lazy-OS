@@ -26,8 +26,8 @@ const WindowProvider = ({ children }) => {
         focused: true,
         minimized: false,
         maximized: false,
-        position: { x: 550, y: 100 },
-        size: { height: 500, width: 500 },
+        position: { x: 300, y: 40 },
+        size: { height: 640, width: 910 },
         component: component,
       },
     ]);
@@ -166,8 +166,8 @@ const WindowProvider = ({ children }) => {
             ? {
                 ...elem,
                 size: {
-                  width: Math.max(500, data.startWidth + dx),
-                  height: Math.max(500, data.startHeight + dy),
+                  width: Math.max(910, data.startWidth + dx),
+                  height: Math.max(640, data.startHeight + dy),
                 },
               }
             : elem,
@@ -182,7 +182,7 @@ const WindowProvider = ({ children }) => {
             ? {
                 ...elem,
                 size: {
-                  width: Math.max(500, data.startWidth + dx),
+                  width: Math.max(910, data.startWidth + dx),
                   height: elem.size.height,
                 },
               }
@@ -199,7 +199,7 @@ const WindowProvider = ({ children }) => {
                 ...elem,
                 size: {
                   width: elem.size.width,
-                  height: Math.max(500, data.startHeight + dy),
+                  height: Math.max(640, data.startHeight + dy),
                 },
               }
             : elem,
@@ -214,7 +214,7 @@ const WindowProvider = ({ children }) => {
             ? {
                 ...elem,
                 size: {
-                  width: Math.max(500, data.startWidth - clampedDx),
+                  width: Math.max(910, data.startWidth - clampedDx),
                   height: elem.size.height,
                 },
                 position: { x: data.startX + clampedDx, y: elem.position.y },
@@ -232,7 +232,7 @@ const WindowProvider = ({ children }) => {
                 ...elem,
                 size: {
                   width: elem.size.width,
-                  height: Math.max(500, data.startHeight - clampedDy),
+                  height: Math.max(640, data.startHeight - clampedDy),
                 },
                 position: { x: elem.position.x, y: data.startY + clampedDy },
               }

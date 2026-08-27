@@ -41,7 +41,7 @@ const Camera = () => {
         videoRef.current.srcObject = null;
       }
     };
-  }, []);
+  }, [isPreview]);
 
   const takePicture = () => {
     const video = videoRef.current;

@@ -6,7 +6,7 @@ const CameraComponent = ({ videoRef, canvasRef }) => {
         autoPlay
         muted
         playsInline
-        className="h-full w-full object-contain"
+        className="h-fit w-full object-contain"
       />
 
       <canvas

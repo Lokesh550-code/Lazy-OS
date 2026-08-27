@@ -3,6 +3,7 @@ import Calculator from "../applications/calculator/Calculator";
 import Camera from "../applications/camera/Camera";
 import Editor from "../applications/editor/Editor";
 import Files from "../applications/Files/Files";
+import MusicPlayer from "../applications/musicPlayer/MusicPlayer"
 import Terminal from "../applications/terminal/Terminal";
 
 const applicationregistery = [
@@ -11,7 +12,8 @@ const applicationregistery = [
   { applicationId: 3, name: "Camera", taskbarApplication: false, component: Camera },
   { applicationId: 4, name: "Editor", taskbarApplication: true, component: Editor },
   { applicationId: 5, name: "Files", taskbarApplication: true, component: Files },
-  { applicationId: 6, name: "Terminal", taskbarApplication: true, component: Terminal },
+  { applicationId: 6, name: "Music player", taskbarApplication: true, component: MusicPlayer },
+  { applicationId: 7, name: "Terminal", taskbarApplication: true, component: Terminal },
 ];
 
 export default applicationregistery;
