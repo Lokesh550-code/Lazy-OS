@@ -12,7 +12,7 @@ const applicationregistery = [
   { applicationId: 3, name: "Camera", taskbarApplication: false, component: Camera },
   { applicationId: 4, name: "Editor", taskbarApplication: true, component: Editor },
   { applicationId: 5, name: "Files", taskbarApplication: true, component: Files },
-  { applicationId: 6, name: "Music player", taskbarApplication: true, component: MusicPlayer },
+  { applicationId: 6, name: "Melody", taskbarApplication: true, component: MusicPlayer },
   { applicationId: 7, name: "Terminal", taskbarApplication: true, component: Terminal },
 ];
 
