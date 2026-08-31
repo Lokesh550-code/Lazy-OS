@@ -90,7 +90,7 @@ const WindowProvider = ({ children }) => {
     const activeComponent = components.find((elem) => elem.windowId === id);
 
     if (activeComponent.maximized) {
-      const newPosition = { x: event.clientX - 250, y: event.clientY - 25 };
+      const newPosition = { x: event.clientX - 455, y: event.clientY - 25 };
       offsetRef.current = {
         x: event.clientX - newPosition.x,
         y: event.clientY - newPosition.y,
@@ -152,8 +152,8 @@ const WindowProvider = ({ children }) => {
     const data = sizeDataRef.current;
     const dx = event.clientX - data.startPointerX;
     const dy = event.clientY - data.startPointerY;
-    const maxDx = data.startWidth - 500;
-    const maxDy = data.startHeight - 500;
+    const maxDx = data.startWidth - 910;
+    const maxDy = data.startHeight - 640;
     const clampedDx = Math.min(dx, maxDx);
     const clampedDy = Math.min(dy, maxDy);
     const dxMax = Math.max(dx, maxDx);
