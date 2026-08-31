@@ -1,5 +1,5 @@
 import { Play, Pause, Volume2 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const ControlComponent = ({
   currentlyPlaying,
@@ -29,6 +29,8 @@ const ControlComponent = ({
           setDuration(e.currentTarget.duration);
           setCurrentTime(0);
         }}
+
+        onEnded={() => {setIsPlaying(false)}}
       />
       <div className="h-full w-[10%] flex justify-center items-center">
         <div

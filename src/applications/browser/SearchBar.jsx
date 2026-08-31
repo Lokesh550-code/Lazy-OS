@@ -7,17 +7,17 @@ const SearchBar = ({ search, setSearch, setSearchResult }) => {
   return (
     <div className="h-11 w-full px-2 flex gap-2">
       <div className="h-full flex justify-center items-center">
-        <button className="text-[#242222] hover:bg-orange-400 px-1 py-1 rounded transition cursor-pointer">
+        <button className="text-[#f6e7d9] hover:bg-orange-400 active:bg-orange-500 px-1 py-1 rounded transition cursor-pointer">
           <ChevronLeft size={19} />
         </button>
-        <button className="text-[#242222] hover:bg-orange-400 px-1 py-1 rounded transition cursor-pointer">
+        <button className="text-[#f6e7d9] hover:bg-orange-400 active:bg-orange-500 px-1 py-1 rounded transition cursor-pointer">
           <ChevronRight size={19} />
         </button>
         <button
           onClick={(e) => {
             setSearchResult("");
           }}
-          className="text-[#242222] hover:bg-orange-400 px-1 py-1 rounded transition cursor-pointer"
+          className="text-[#f6e7d9] hover:bg-orange-400 active:bg-orange-500 px-1 py-1 rounded transition cursor-pointer"
         >
           <RotateCw size={19} />
         </button>

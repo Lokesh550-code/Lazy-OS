@@ -7,7 +7,7 @@ import MusicPlayer from "../applications/musicPlayer/MusicPlayer"
 import Terminal from "../applications/terminal/Terminal";
 
 const applicationregistery = [
-  { applicationId: 1, name: "Browser", taskbarApplication: false, component: Browser },
+  { applicationId: 1, name: "Crawl", taskbarApplication: false, component: Browser },
   { applicationId: 2, name: "Calculator", taskbarApplication: false, component: Calculator },
   { applicationId: 3, name: "Camera", taskbarApplication: false, component: Camera },
   { applicationId: 4, name: "Editor", taskbarApplication: true, component: Editor },
