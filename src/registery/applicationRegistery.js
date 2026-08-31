@@ -13,7 +13,7 @@ const applicationregistery = [
   { applicationId: 4, name: "Ink", taskbarApplication: true, component: Editor },
   { applicationId: 5, name: "Files", taskbarApplication: true, component: Files },
   { applicationId: 6, name: "Melody", taskbarApplication: true, component: MusicPlayer },
-  { applicationId: 7, name: "Terminal", taskbarApplication: true, component: Terminal },
+  { applicationId: 7, name: "Glyph", taskbarApplication: true, component: Terminal },
 ];
 
 export default applicationregistery;
