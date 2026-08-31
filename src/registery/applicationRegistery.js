@@ -9,7 +9,7 @@ import Terminal from "../applications/terminal/Terminal";
 const applicationregistery = [
   { applicationId: 1, name: "Crawl", taskbarApplication: false, component: Browser },
   { applicationId: 2, name: "Calculator", taskbarApplication: false, component: Calculator },
-  { applicationId: 3, name: "Camera", taskbarApplication: false, component: Camera },
+  { applicationId: 3, name: "Lens", taskbarApplication: false, component: Camera },
   { applicationId: 4, name: "Editor", taskbarApplication: true, component: Editor },
   { applicationId: 5, name: "Files", taskbarApplication: true, component: Files },
   { applicationId: 6, name: "Melody", taskbarApplication: true, component: MusicPlayer },

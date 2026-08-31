@@ -61,49 +61,16 @@ const Camera = () => {
   };
 
   return (
-    <div className="h-full w-full bg-orange-300 text-[#242222] flex flex-col overflow-hidden">
-      <div className="h-[calc(100%-4rem)] w-full">
-        <div className="h-10 shrink-0 w-full px-5 pt-2">
-          <div className="h-full flex items-center gap-3 text-xl">
-            <button
-              onClick={() => setIsPreview(false)}
-              className={`h-full px-4 rounded-t-md cursor-pointer transition ${
-                !isPreview
-                  ? "bg-orange-500"
-                  : "bg-orange-400 hover:bg-orange-500"
-              }`}
-            >
-              Camera
-            </button>
-
-            <button
-              onClick={() => setIsPreview(true)}
-              className={`h-full px-4 rounded-t-md cursor-pointer transition ${
-                isPreview
-                  ? "bg-orange-500"
-                  : "bg-orange-400 hover:bg-orange-500"
-              }`}
-            >
-              Preview
-            </button>
-          </div>
-        </div>
-
-        <div className="flex-1 min-h-0 w-full px-5">
-          {!isPreview ? (
-            <CameraComponent videoRef={videoRef} canvasRef={canvasRef} />
-          ) : (
-            <PreviewComponent photo={photo} />
-          )}
-        </div>
+    <div className="h-full w-full bg-[#242222] text-[#f6e7d9] font-ui">
+      <div className="h-10 w-full flex gap-4 items-end px-3">
+        <button onClick={() => {setIsPreview(false)}} className="text-xl px-4 rounded-t-md cursor-pointer bg-[#c05037] hover:bg-[#bb3d20] active:bg-[#a43219] ">Lens</button>
+        <button onClick={() => {setIsPreview(true)}} className="text-xl px-4 rounded-t-md cursor-pointer bg-[#c05037] hover:bg-[#bb3d20] active:bg-[#a43219]">Preview</button>
       </div>
-      <div className="h-16 shrink-0 w-full flex justify-center items-center">
-        <button
-          onClick={takePicture}
-          className="px-5 py-2 text-xl bg-orange-500 rounded
-          cursor-pointer hover:scale-105 hover:bg-[#fb6746]
-          active:scale-95 active:bg-[#ff5731] transition"
-        >
+      <div className="h-[calc(100%-6.5rem)] w-full px-3">
+        {!isPreview? <CameraComponent videoRef={videoRef} canvasRef={canvasRef} />: <PreviewComponent photo={photo} />}
+      </div>
+      <div className="h-16 w-full flex justify-center items-center">
+        <button onClick={takePicture} className="px-4 py-2 text-xl rounded cursor-pointer bg-[#c05037] hover:bg-[#bb3d20] active:bg-[#a43219]">
           Snap
         </button>
       </div>

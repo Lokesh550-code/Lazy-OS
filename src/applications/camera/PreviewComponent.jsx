@@ -14,7 +14,7 @@ const PreviewComponent = ({ photo }) => {
     }
   };
   return (
-    <div className="h-full w-full flex justify-center items-center relative overflow-hidden">
+    <div className="h-full w-full select-none flex justify-center items-center relative overflow-hidden bg-gray-800">
       {photo.length !== 0 ? (
         <img className="h-full w-full" src={URL.createObjectURL(photo[counter])} alt="" />
       ) : (
