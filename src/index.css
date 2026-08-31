@@ -14,3 +14,32 @@ body,
   --font-ui: "Fresca", sans-serif;
   --font-application: "JetBrains Mono", monospace;
 }
+
+.music-slider {
+  appearance: none;
+  width: 70%;
+  height: 4px;
+  cursor: pointer;
+  background: #535050;
+  border-radius: 999px;
+}
+
+/* Chrome, Edge, Safari */
+.music-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #f1e0d0;
+  cursor: pointer;
+}
+
+/* Firefox */
+.music-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: none;
+  border-radius: 50%;
+  background: #f6e7d9;
+  cursor: pointer;
+}
