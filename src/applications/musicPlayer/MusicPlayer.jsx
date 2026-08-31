@@ -8,26 +8,11 @@ const MusicPlayer = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentlyPlaying, setCurrentlyPlaying] = useState(null);
   const [currentTime, setCurrentTime] = useState(0);
-  const [volume, setVolume] = useState(100);
+  const [duration, setDuration] = useState(0);
+  const [volume, setVolume] = useState(1);
 
   const songList = useRef(musicRegistery);
   const musicPlayerRef = useRef(null);
-
-  useEffect(() => {
-    const audio = musicPlayerRef.current;
-
-    if (!audio) return;
-
-    const updateTime = () => {
-      setCurrentTime(audio.currentTime);
-    };
-
-    audio.addEventListener("timeupdate", updateTime);
-
-    return () => {
-      audio.removeEventListener("timeupdate", updateTime);
-    };
-  }, []);
 
   return (
     <div className="h-full w-full flex bg-[#242222] text-[#f6e7d9] font-ui">
@@ -46,6 +31,10 @@ const MusicPlayer = () => {
           setIsPlaying={setIsPlaying}
           currentTime={currentTime}
           setCurrentTime={setCurrentTime}
+          volume={volume}
+          setVolume={setVolume}
+          duration={duration}
+          setDuration={setDuration}
         />
       </div>
     </div>

@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Fresca&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fresca&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 @import "tailwindcss";
 
 html,
@@ -41,5 +41,47 @@ body,
   border: none;
   border-radius: 50%;
   background: #f6e7d9;
+  cursor: pointer;
+}
+
+.vertical-slider {
+  appearance: none;
+  -webkit-appearance: none;
+
+  writing-mode: vertical-lr;
+  direction: rtl;
+
+  width: 6px;
+  height: 100px;
+
+  background: #535050;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* Chrome / Edge / Safari */
+.vertical-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: #f1e0d0;
+  cursor: pointer;
+}
+
+/* Firefox */
+.vertical-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+  border: none;
+
+  background: #f1e0d0;
   cursor: pointer;
 }
