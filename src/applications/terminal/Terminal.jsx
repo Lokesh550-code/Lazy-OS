@@ -1,8 +1,16 @@
 import { useState } from "react";
+import { useWindow } from "../../hooks/useWindow";
+import MusicPlayer from "../musicPlayer/MusicPlayer";
+import Files from "../Files/Files";
+import Editor from "../editor/Editor";
+import Camera from "../camera/Camera";
+import Calculator from "../calculator/Calculator";
+import Browser from "../browser/Browser";
 
 const Terminal = () => {
   const [history, setHistory] = useState([]);
   const [currentCommand, setCurrentCommand] = useState("");
+  const { addComponents } = useWindow();
 
   const submitHandle = (e) => {
     e.preventDefault();
@@ -35,12 +43,49 @@ const Terminal = () => {
       ]);
     }
 
-    if (currentCommand.toLowerCase() === "history") {
-      const now = new Date();
-      setHistory((prev) => [
-        ...prev,
-        { command: currentCommand, output: now.toDateString() },
-      ]);
+    if (currentCommand.split(" ")[0].toLowerCase() === "open") {
+      if (currentCommand.split(" ")[1].toLowerCase() === "melody") {
+        addComponents("Melody", 6, MusicPlayer);
+        setHistory((prev) => [
+          ...prev,
+          { command: currentCommand, output: "" },
+        ]);
+      } else if (currentCommand.split(" ")[1].toLowerCase() === "files") {
+        addComponents("Files", 5, Files);
+        setHistory((prev) => [
+          ...prev,
+          { command: currentCommand, output: "" },
+        ]);
+      } else if (currentCommand.split(" ")[1].toLowerCase() === "ink") {
+        addComponents("Ink", 4, Editor);
+        setHistory((prev) => [
+          ...prev,
+          { command: currentCommand, output: "" },
+        ]);
+      } else if (currentCommand.split(" ")[1].toLowerCase() === "lens") {
+        addComponents("Lens", 3, Camera);
+        setHistory((prev) => [
+          ...prev,
+          { command: currentCommand, output: "" },
+        ]);
+      } else if (currentCommand.split(" ")[1].toLowerCase() === "calc") {
+        addComponents("Calc", 2, Calculator);
+        setHistory((prev) => [
+          ...prev,
+          { command: currentCommand, output: "" },
+        ]);
+      } else if (currentCommand.split(" ")[1].toLowerCase() === "crawl") {
+        addComponents("Crawl", 1, Browser);
+        setHistory((prev) => [
+          ...prev,
+          { command: currentCommand, output: "" },
+        ]);
+      } else {
+        setHistory((prev) => [
+          ...prev,
+          { command: currentCommand, output: "app not found" },
+        ]);
+      }
     }
 
     setCurrentCommand("");
@@ -67,7 +112,7 @@ const Terminal = () => {
       >
         <label>lazy@lazy-os:$ </label>
         <input
-          className="outline-0 w-[89%]"
+          className="outline-0 w-[85%]"
           autoFocus
           onChange={(e) => {
             setCurrentCommand(e.target.value);
