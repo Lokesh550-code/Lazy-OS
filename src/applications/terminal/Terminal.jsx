@@ -104,9 +104,16 @@ const Terminal = () => {
       setHistory((prev) => [...prev, { command: currentCommand, output: str }]);
     }
 
+    if (currentCommand.split(" ")[0].toLowerCase() === "process") {
+      let str = "";
+      components.map(
+        (elem) => (str = str + elem.applicationName + ": " + elem.windowId + " \n"),
+      );
+      setHistory((prev) => [...prev, { command: currentCommand, output: str }]);
+    }
+
     setCurrentCommand("");
   };
-
 
   return (
     <div className="h-full w-full px-5 py-2.5">
