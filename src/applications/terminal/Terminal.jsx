@@ -16,16 +16,12 @@ const Terminal = () => {
     e.preventDefault();
     if (currentCommand.toLowerCase() === "clear") {
       setHistory([]);
-    }
-
-    if (currentCommand.toLowerCase() === "whoami") {
+    } else if (currentCommand.toLowerCase() === "whoami") {
       setHistory((prev) => [
         ...prev,
         { command: currentCommand, output: "Laz" },
       ]);
-    }
-
-    if (currentCommand.toLowerCase() === "about") {
+    } else if (currentCommand.toLowerCase() === "about") {
       setHistory((prev) => [
         ...prev,
         {
@@ -33,17 +29,13 @@ const Terminal = () => {
           output: "A web-application trying to cosplay as an OS",
         },
       ]);
-    }
-
-    if (currentCommand.toLowerCase() === "date") {
+    } else if (currentCommand.toLowerCase() === "date") {
       const now = new Date();
       setHistory((prev) => [
         ...prev,
         { command: currentCommand, output: now.toDateString() },
       ]);
-    }
-
-    if (currentCommand.split(" ")[0].toLowerCase() === "open") {
+    } else if (currentCommand.split(" ")[0].toLowerCase() === "open") {
       if (currentCommand.split(" ")[1].toLowerCase() === "melody") {
         addComponents("Melody", 6, MusicPlayer);
         setHistory((prev) => [
@@ -86,9 +78,7 @@ const Terminal = () => {
           { command: currentCommand, output: "app not found" },
         ]);
       }
-    }
-
-    if (currentCommand.split(" ")[0].toLowerCase() === "close") {
+    } else if (currentCommand.split(" ")[0].toLowerCase() === "close") {
       console.log("close is working");
       let id = currentCommand.split(" ")[1];
       console.log(components.includes((elem) => elem.windowId === id));
@@ -96,20 +86,36 @@ const Terminal = () => {
         console.log("the id is correct");
         removeComponent(id);
       }
-    }
-
-    if (currentCommand.split(" ")[0].toLowerCase() === "history") {
+    } else if (currentCommand.split(" ")[0].toLowerCase() === "history") {
       let str = "";
       history.map((elem) => (str = str + elem.command + "\n "));
       setHistory((prev) => [...prev, { command: currentCommand, output: str }]);
-    }
-
-    if (currentCommand.split(" ")[0].toLowerCase() === "process") {
+    } else if (currentCommand.split(" ")[0].toLowerCase() === "process") {
       let str = "";
       components.map(
-        (elem) => (str = str + elem.applicationName + ": " + elem.windowId + " \n"),
+        (elem) =>
+          (str = str + elem.applicationName + ": " + elem.windowId + " \n"),
       );
       setHistory((prev) => [...prev, { command: currentCommand, output: str }]);
+    } else if (currentCommand.split(" ")[0].toLowerCase() === "help") {
+      const help = `clear    : clears the terminal
+                    whoami   : displays the current user
+                    about    : displays information about LazyOS
+                    date     : displays the current date
+                    open     : opens a specified application
+                    close    : closes a running application (requires process ID)
+                    process  : lists all currently running processes
+                    history  : lists commands used during the current session
+                    help     : lists all available commands`;
+      setHistory((prev) => [
+        ...prev,
+        { command: currentCommand, output: help },
+      ]);
+    } else {
+      setHistory((prev) => [
+        ...prev,
+        { command: currentCommand, output: "The command is not valid" },
+      ]);
     }
 
     setCurrentCommand("");
@@ -141,6 +147,7 @@ const Terminal = () => {
           onChange={(e) => {
             setCurrentCommand(e.target.value);
           }}
+          placeholder="Enter help to get started"
           value={currentCommand}
           type="text"
         />
