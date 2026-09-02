@@ -10,7 +10,7 @@ import Browser from "../browser/Browser";
 const Terminal = () => {
   const [history, setHistory] = useState([]);
   const [currentCommand, setCurrentCommand] = useState("");
-  const { addComponents } = useWindow();
+  const { components, addComponents, removeComponent } = useWindow();
 
   const submitHandle = (e) => {
     e.preventDefault();
@@ -88,8 +88,20 @@ const Terminal = () => {
       }
     }
 
+    if (currentCommand.split(" ")[0].toLowerCase() === "close") {
+      console.log('close is working');
+      let id = currentCommand.split(" ")[1];
+      console.log(components.includes((elem) => elem.windowId === id));
+      if (components.some((elem) => elem.windowId === id)) {
+        console.log("the id is correct");
+        removeComponent(id);
+      }
+    }
+
     setCurrentCommand("");
   };
+
+  console.log(components);
 
   return (
     <div className="h-full w-full px-5 py-2.5">
