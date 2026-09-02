@@ -89,7 +89,7 @@ const Terminal = () => {
     }
 
     if (currentCommand.split(" ")[0].toLowerCase() === "close") {
-      console.log('close is working');
+      console.log("close is working");
       let id = currentCommand.split(" ")[1];
       console.log(components.includes((elem) => elem.windowId === id));
       if (components.some((elem) => elem.windowId === id)) {
@@ -98,10 +98,15 @@ const Terminal = () => {
       }
     }
 
+    if (currentCommand.split(" ")[0].toLowerCase() === "history") {
+      let str = "";
+      history.map((elem) => (str = str + elem.command + "\n "));
+      setHistory((prev) => [...prev, { command: currentCommand, output: str }]);
+    }
+
     setCurrentCommand("");
   };
 
-  console.log(components);
 
   return (
     <div className="h-full w-full px-5 py-2.5">
@@ -111,7 +116,7 @@ const Terminal = () => {
               <>
                 <span className="inline">lazy@lazy-os:$ </span>
                 {elem.command}
-                <p>{elem.output}</p>
+                <p className="whitespace-pre-line">{elem.output}</p>
               </>
             );
           })
