@@ -54,6 +54,7 @@ LazyOS is an ongoing project where I am experimenting with recreating the experi
 - **JavaScript**
 - **Vite**
 - **Tailwind CSS**
+- **IndexedDb**
 
 ---
 
@@ -84,7 +85,7 @@ LazyOS is being developed in phases.
 - Window state management
 - Architecture refactoring
 
-### Phase 3 — Applications
+### Phase 3 — Applications ✓
 
 Planned applications include:
 
