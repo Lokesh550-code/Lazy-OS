@@ -2,7 +2,7 @@ import Browser from "../applications/browser/Browser";
 import Calculator from "../applications/calculator/Calculator";
 import Camera from "../applications/camera/Camera";
 import Editor from "../applications/editor/Editor";
-import Files from "../applications/Files/Files";
+import Files from "../applications/files/Files";
 import MusicPlayer from "../applications/musicPlayer/MusicPlayer"
 import Terminal from "../applications/terminal/Terminal";
 
