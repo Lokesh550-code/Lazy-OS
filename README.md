@@ -4,7 +4,7 @@ A stylized, browser-based desktop environment built with React.
 
 LazyOS is an ongoing project where I am experimenting with recreating the experience of using a desktop operating system inside a web browser. The goal isn't to recreate an actual operating system, but to build a convincing and interactive computing environment while exploring frontend architecture, state management, UI systems, and browser APIs.
 
-> **Status:** Phase 2 — Window System Complete
+> **Status:** Phase 3 — Applications Complete
 
 ---
 
