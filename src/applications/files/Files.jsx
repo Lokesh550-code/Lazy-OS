@@ -23,6 +23,8 @@ const Files = () => {
       <Main
         currentDirectory={currentDirectory}
         changeDirectory={changeDirectory}
+        currentPath={currentPath}
+        setCurrentPath={setCurrentPath}
       />
     </div>
   );

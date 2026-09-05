@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 const Main = ({ currentDirectory, changeDirectory }) => {
   return (
     <div className="h-full w-[74%] px-5 py-2 flex flex-col">
-      <Navbar />
+      <Navbar currentDirectory={currentDirectory} />
       <div className="h[calc(100% - 2.5rem)] flex py-3">
         {currentDirectory.children.map((elem) => {
           return (

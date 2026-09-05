@@ -1,8 +1,7 @@
 import { ChevronLeft } from "lucide-react";
 import { ChevronRight } from "lucide-react";
 
-const Navbar = () => {
-
+const Navbar = ({ currentPath, setCurrentPath }) => {
   return (
     <div className="h-10 w-full flex items-center justify-between">
       <input
