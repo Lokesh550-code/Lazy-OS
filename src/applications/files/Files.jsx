@@ -5,11 +5,22 @@ import Main from "./Main";
 
 const Files = () => {
   const [currentDirectory, setCurrentDirectory] = useState(root);
-  const [directoryHistory, setDirectoryHistory] = useState([]);
+  const [directoryHistory, setDirectoryHistory] = useState([currentDirectory]);
+  const [historyIndex, setHistoryIndex] = useState(0);
   const [currentPath, setCurrentPath] = useState(root.path);
   const changeDirectory = (directory) => {
     setDirectoryHistory((prev) => [...prev, directory]);
     setCurrentDirectory(directory);
+    setCurrentPath(directory.path);
+    setHistoryIndex((prev) => prev = 1);
+  };
+
+  const handleBack = () => {
+    if (historyIndex > 0) {
+      setHistoryIndex((prev) => prev - 1);
+      setCurrentDirectory(directoryHistory[historyIndex - 1]);
+      setCurrentPath(directoryHistory[historyIndex - 1].path);
+    }
   };
 
   return (
@@ -25,6 +36,8 @@ const Files = () => {
         changeDirectory={changeDirectory}
         currentPath={currentPath}
         setCurrentPath={setCurrentPath}
+        directoryHistory={directoryHistory}
+        handleBack={handleBack}
       />
     </div>
   );

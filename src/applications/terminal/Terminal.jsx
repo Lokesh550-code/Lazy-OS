@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useWindow } from "../../hooks/useWindow";
 import MusicPlayer from "../musicPlayer/MusicPlayer";
-import Files from "../Files/Files";
+import Files from "../files/Files";
 import Editor from "../editor/Editor";
 import Camera from "../camera/Camera";
 import Calculator from "../calculator/Calculator";

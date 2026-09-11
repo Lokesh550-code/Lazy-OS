@@ -1,12 +1,12 @@
 import Heer from "./library/cover/Heer.png";
-import whitekeys from "./library/cover/whiteKeys.png";
+import whitekeys from "./library/cover/WhiteKeys.png";
 import Hummingbird from "./library/cover/Hummingbird.png";
 import HarleysInHawaii from "./library/cover/HarleysInHawaii.png";
 import ChandSifarish from "./library/cover/ChandSifarish.png";
 import TumseOHaseena from "./library/cover/TumseOHaseena.png";
 
 import HeerSrc from "./library/music/Heer.mp3";
-import whitekeysSrc from "./library/music/whiteKeys.mp3";
+import whitekeysSrc from "./library/music/WhiteKeys.mp3";
 import HummingbirdSrc from "./library/music/Hummingbird.mp3";
 import HarleysInHawaiiSrc from "./library/music/HarleysInHawaii.mp3";
 import ChandSifarishSrc from "./library/music/ChandSifarish.mp3";
