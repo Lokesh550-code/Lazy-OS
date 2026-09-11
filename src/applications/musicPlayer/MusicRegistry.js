@@ -1,5 +1,5 @@
 import Heer from "./library/cover/Heer.png";
-import whitekeys from "./library/cover/WhiteKeys.png";
+import whitekeys from "./library/cover/whiteKeys.png";
 import Hummingbird from "./library/cover/Hummingbird.png";
 import HarleysInHawaii from "./library/cover/HarleysInHawaii.png";
 import ChandSifarish from "./library/cover/ChandSifarish.png";
