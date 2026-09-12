@@ -9,13 +9,21 @@ const Calculator = () => {
   const [operator, setOperator] = useState("");
   const [result, setResult] = useState("");
 
-  const handleNumber = (number) => {
-    if (operator !== "") {
-      setSecondValue((prev) => prev + number);
-    } else {
-      setFirstValue((prev) => prev + number);
+const handleNumber = (number) => {
+  if (operator !== "") {
+    if (number === "." && secondValue.includes(".")) {
+      return;
     }
-  };
+
+    setSecondValue((prev) => prev + number);
+  } else {
+    if (number === "." && firstValue.includes(".")) {
+      return;
+    }
+
+    setFirstValue((prev) => prev + number);
+  }
+};
 
   const handleOperator = (operatorValue) => {
     setOperator(operatorValue);
@@ -96,7 +104,7 @@ const Calculator = () => {
   }, [firstValue, secondValue, operator, result]);
 
   return (
-    <div className="h-full w-full bg-orange-300 px-5 pt-2 flex flex-col gap-3">
+    <div className="h-full w-full bg-[#242222] px-5 pt-2 flex flex-col gap-3">
       <div className="h-12 w-full px-8 text-xl bg-[#242222] text-[text-[#f6e7d9]] border-2 border-orange-400 flex justify-end items-center">
         <h1>
           {firstValue} {operator} {secondValue} {result ? `= ${result}` : ""}
